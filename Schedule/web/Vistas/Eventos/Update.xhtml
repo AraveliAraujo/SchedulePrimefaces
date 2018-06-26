@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog widgetVar="ActualizarEventoDialog" header="Actualizar Evento" showEffect="clip" hideEffect="clip" modal="true">
+            <h:form id="ActualizarEvento" >
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="titulo" value="Titles:" />
+                    <p:inputText id="titulo" value="#{tareasController.event.title}" required="true" requiredMessage="Ingrese Titulo">
+                        <p:ajax event="blur" update="fecha"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="fecha" value="From:" />
+                    <p:calendar id="fecha" value="#{tareasController.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy"/>
+
+                    <p:commandButton id="updateButton" value="Actualizar" actionListener="#{tareasController.actualizarEvento()}" oncomplete="PF('ActualizarEventoDialog').hide();" update="ActualizarEvento :form"/>
+                    <p:commandButton value="Cancelar" oncomplete="PF('ActualizarEventoDialog').hide();" update="ActualizarEvento" immediate="true"/>
+                    <p:column colspan="2" >
+                    <p:commandButton value="Eliminar" actionListener="#{tareasController.eliminar()}" oncomplete="PF('ActualizarEventoDialog').hide();" update=":form" immediate="true"/>
+                    </p:column>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
+

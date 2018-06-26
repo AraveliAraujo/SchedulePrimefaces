@@ -1,0 +1,38 @@
+--------------ORACLE--------------------
+
+-- DATABASE NAME : SCHEDULE
+CREATE TABLE tareas (
+    codigo        NUMBER PRIMARY KEY,
+    fecha         DATE,
+    descripcion   VARCHAR2(250 BYTE),
+    estado        VARCHAR2(1 BYTE) DEFAULT 'A'
+)
+
+
+---------------------------------------
+----------------SQL SERVER----------------
+
+CREATE DATABASE SCHEDULE
+-- DATABASE NAME : SCHEDULE
+DROP TABLE tareas;
+CREATE TABLE tareas (
+    codigo        INT IDENTITY(1,1) PRIMARY KEY,
+    fecha         DATE,
+    descripcion   VARCHAR(250),
+    estado        VARCHAR(1) DEFAULT 'A'
+);
+
+SELECT * FROM TAREAS;
+
+
+--CONSULTAS PARA PRUEBAS
+INSERT INTO TAREAS (FECHA,DESCRIPCION) VALUES (CONVERT(DATE,'20/04/2018', 103),'EVENTO EJEMPLO');
+
+Select CODIGO,convert(varchar(10), FECHA, 103) AS FECHA,DESCRIPCION,ESTADO from Tareas WHERE ESTADO LIKE 'A'
+
+UPDATE TAREAS SET FECHA = (CONVERT(DATE,'20/05/2018', 103)) WHERE CODIGO LIKE '1'
+
+UPDATE TAREAS SET FECHA = (CONVERT(DATE,'25/05/2018', 103)),DESCRIPCION='EJEMPLO DEL EVENTO' WHERE CODIGO LIKE '1'
+
+UPDATE TAREAS SET ESTADO = 'I' WHERE CODIGO = '1'
+
